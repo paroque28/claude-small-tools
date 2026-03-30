@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+  echo "Usage: tradde \"text to translate\""
+  echo ""
+  echo "Translates text from any language to German."
+  echo "Outputs the translation and its IPA transcription."
+  exit 0
+fi
+
+text="$*"
+
+claude -p \
+  --model haiku \
+  "Translate the following text to German. Output exactly two lines:
+1. The German translation
+2. The IPA (International Phonetic Alphabet) transcription of the German translation
+
+No labels, no extra text, no explanations. Just the two lines.
+
+Text: ${text}"
