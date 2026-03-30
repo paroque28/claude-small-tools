@@ -2,6 +2,9 @@
 set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
+
 USAGE="Usage: whaterror \"error message\"
        some_command 2>&1 | whaterror
 

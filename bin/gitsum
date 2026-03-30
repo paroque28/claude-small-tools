@@ -2,6 +2,9 @@
 set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
+
 if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
   echo "Usage: gitsum [number_of_commits]"
   echo ""

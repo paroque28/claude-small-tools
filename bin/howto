@@ -2,6 +2,9 @@
 set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
+
 USAGE="Usage: howto \"task description\"
 
 Gives the shell command(s) to accomplish a task."

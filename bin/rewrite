@@ -2,6 +2,9 @@
 set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
+
 USAGE="Usage: rewrite [--tone TONE] \"text to rewrite\"
 
 Rewrites text in a given tone.

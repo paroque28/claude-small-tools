@@ -2,6 +2,9 @@
 set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
+
 USAGE="Usage: corrcat \"text in Catalan\"
 
 Checks spelling and grammar of Catalan text.

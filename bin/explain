@@ -2,6 +2,9 @@
 set -euo pipefail
 source "$(dirname "$0")/lib/common.sh"
 
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
+
 USAGE="Usage: explain \"word or phrase\"
 
 Explains the etymology, meaning, and usage of a word or phrase."

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
+CLAUDE_MODEL="sonnet"
 source "$(dirname "$0")/lib/common.sh"
+
+parse_model_flags "$@"
+set -- "${REMAINING_ARGS[@]}"
 
 USAGE="Usage: coderev <file>
        cat file.py | coderev
