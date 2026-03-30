@@ -9,7 +9,7 @@ Outputs the translation and its IPA transcription."
 
 text="$(resolve_input "$USAGE" "$@")"
 
-ask_haiku "Translate the following text to Catalan. Output exactly two lines:
+ask_haiku "Translate the following text to standard Catalan. The input may be in any language including Spanish or other Romance languages — always translate to proper Catalan, never leave Spanish words untranslated. Output exactly two lines:
 1. The Catalan translation
 2. The IPA (International Phonetic Alphabet) transcription of the Catalan translation
 
