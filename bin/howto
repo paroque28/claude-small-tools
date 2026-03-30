@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: howto \"task description\"
+
+Gives the shell command(s) to accomplish a task."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Give the shell command(s) to accomplish the following task. Output:
+1. The command(s) — one per line, ready to copy-paste
+2. A one-line explanation of each command
+
+Target: Linux/macOS with common tools. Be concise.
+
+Task: ${text}"

@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
 
-if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-  echo "Usage: tradcat \"text to translate\""
-  echo ""
-  echo "Translates text from any language to Catalan."
-  echo "Outputs the translation and its IPA transcription."
-  exit 0
-fi
+USAGE="Usage: tradcat \"text to translate\"
 
-text="$*"
+Translates text from any language to Catalan.
+Outputs the translation and its IPA transcription."
 
-claude -p \
-  --model haiku \
-  "Translate the following text to Catalan. Output exactly two lines:
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Translate the following text to Catalan. Output exactly two lines:
 1. The Catalan translation
 2. The IPA (International Phonetic Alphabet) transcription of the Catalan translation
 

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: jsonfix '{\"broken json'
+       cat broken.json | jsonfix
+
+Fixes malformed JSON and outputs valid JSON."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Fix the following malformed JSON. Output ONLY the corrected, valid, pretty-printed JSON. No explanation, no markdown fences, no extra text.
+
+${text}"

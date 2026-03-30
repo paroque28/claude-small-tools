@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: whaterror \"error message\"
+       some_command 2>&1 | whaterror
+
+Explains an error message and suggests fixes."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Explain the following error message concisely. Output:
+1. What it means (1-2 lines)
+2. Most likely cause
+3. How to fix it (concrete steps)
+
+Be direct and practical.
+
+Error: ${text}"

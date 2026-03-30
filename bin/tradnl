@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
 
-if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-  echo "Usage: tradnl \"text to translate\""
-  echo ""
-  echo "Translates text from any language to Dutch."
-  echo "Outputs the translation and its IPA transcription."
-  exit 0
-fi
+USAGE="Usage: tradnl \"text to translate\"
 
-text="$*"
+Translates text from any language to Dutch.
+Outputs the translation and its IPA transcription."
 
-claude -p \
-  --model haiku \
-  "Translate the following text to Dutch. Output exactly two lines:
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Translate the following text to Dutch. Output exactly two lines:
 1. The Dutch translation
 2. The IPA (International Phonetic Alphabet) transcription of the Dutch translation
 

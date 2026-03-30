@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: tldr \"long text to summarize\"
+       cat article.txt | tldr
+
+Summarizes text concisely."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Summarize the following text in 2-3 concise bullet points. No preamble.
+
+${text}"

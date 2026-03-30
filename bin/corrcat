@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: corrcat \"text in Catalan\"
+
+Checks spelling and grammar of Catalan text.
+Outputs the corrected text and lists the changes made."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "You are a Catalan language proofreader. Check the following Catalan text for spelling and grammar errors. Output exactly:
+1. The corrected text
+2. A blank line
+3. A bullet list of changes made (or \"Cap error trobat.\" if there are none)
+
+No other text or labels.
+
+Text: ${text}"

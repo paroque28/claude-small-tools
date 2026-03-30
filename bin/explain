@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: explain \"word or phrase\"
+
+Explains the etymology, meaning, and usage of a word or phrase."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Explain the following word or phrase. Include:
+1. Meaning (one line)
+2. Etymology (one line)
+3. Example usage (one line)
+
+Keep it concise. No labels on the lines — just the content grouped by blank lines.
+
+Word/phrase: ${text}"

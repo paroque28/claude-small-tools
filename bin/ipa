@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: ipa \"text in any language\"
+
+Outputs the IPA transcription of the given text.
+Auto-detects the language."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Give the IPA (International Phonetic Alphabet) transcription of the following text. Auto-detect the language. Output only the IPA transcription in square brackets, nothing else.
+
+Text: ${text}"

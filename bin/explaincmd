@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: explaincmd \"command to explain\"
+
+Explains what a shell command does, flag by flag."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Explain the following shell command. Break it down flag by flag and pipe by pipe. Be concise.
+
+Command: ${text}"

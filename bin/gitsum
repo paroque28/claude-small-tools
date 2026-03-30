@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "Usage: gitsum [number_of_commits]"
+  echo ""
+  echo "Summarizes recent git history in plain language."
+  echo "Defaults to the last 10 commits."
+  exit 0
+fi
+
+count="${1:-10}"
+
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+  echo "Error: not inside a git repository" >&2
+  exit 1
+fi
+
+log="$(git log --oneline --no-decorate -n "$count" 2>/dev/null)"
+
+if [ -z "$log" ]; then
+  echo "No commits found."
+  exit 0
+fi
+
+ask_haiku "Summarize the following git log in plain language. Group related changes together. Be concise — a short paragraph or bullet list.
+
+${log}"

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: coderev <file>
+       cat file.py | coderev
+
+Quick code review of a single file."
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "$USAGE"
+  exit 0
+fi
+
+if [ $# -gt 0 ]; then
+  if [ ! -f "$1" ]; then
+    echo "Error: file not found: $1" >&2
+    exit 1
+  fi
+  code="$(cat "$1")"
+elif [ ! -t 0 ]; then
+  code="$(cat)"
+else
+  echo "$USAGE"
+  exit 0
+fi
+
+ask_haiku "Review the following code. Be concise and practical. Output:
+1. Summary (1 line: what the code does)
+2. Issues (bullet list of bugs, security problems, or logic errors — or \"None found\")
+3. Suggestions (bullet list of improvements — max 5)
+
+Code:
+${code}"

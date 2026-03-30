@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib/common.sh"
+
+USAGE="Usage: namer \"description of what the variable/function does\"
+
+Suggests good variable and function names for a concept."
+
+text="$(resolve_input "$USAGE" "$@")"
+
+ask_haiku "Suggest 5 good names for a variable or function described below. For each name, show it in camelCase, snake_case, and kebab-case on one line. No extra text.
+
+Description: ${text}"
